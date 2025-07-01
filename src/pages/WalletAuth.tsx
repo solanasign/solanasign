@@ -4,6 +4,8 @@ import WalletConnectionModal from "../components/WalletConnectionModal";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import BeamsBackground from "../components/BeamsBackground";
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 
 const WalletAuth = () => {
   const [selectedDiet, setSelectedDiet] = useState("");
@@ -30,28 +32,32 @@ const WalletAuth = () => {
           </Link>
           Select Your Wallet
         </div>
-        <div className="flex flex-1 items-center justify-center">
-          <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4 p-4">
-            {diets.map((diet, index) => (
-              <div
-                key={index}
-                className={`relative bg-custom-gradient-0 py-4 flex justify-between px-2 items-center gap-4 border rounded-lg shadow-md h-[83px] w-[346px] overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
-                  selectedDiet === diet.name
-                    ? "bg-violet-600 text-white"
-                    : "bg-white text-gray-700"
-                }`}
-                onClick={() => handleWalletSelect(diet.name)}
-              >
-                <img
-                  src={diet.icon}
-                  alt={`${diet.name} Icon`}
-                  className="w-1/2 transition-transform duration-300 group-hover:scale-110"
-                />
-                <p className="block font-semibold py-4 px-4">{diet.name}</p>
+        <div className="flex flex-1 items-center justify-center px-2 sm:px-0">
+          <div className="w-full max-w-6xl">
+            <SimpleBar className="sm:overflow-y-auto sm:max-h-[70vh] sm:hide-scrollbar" style={{ minHeight: 0 }} autoHide={true} forceVisible="y">
+              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 justify-items-center">
+                {diets.map((diet, index) => (
+                  <div
+                    key={index}
+                    className={`relative bg-custom-gradient-0 py-4 flex justify-between px-2 items-center gap-4 border rounded-lg shadow-md h-[83px] w-[346px] overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
+                      selectedDiet === diet.name
+                        ? "bg-purple-700 text-white"
+                        : "bg-white text-gray-700"
+                    }`}
+                    onClick={() => handleWalletSelect(diet.name)}
+                  >
+                    <img
+                      src={diet.icon}
+                      alt={`${diet.name} Icon`}
+                      className="w-1/2 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <p className="block font-semibold py-4 px-4">{diet.name}</p>
 
-                <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center text-white text-lg font-semibold opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-[#ce9f53]/20 flex items-center justify-center text-white text-lg font-semibold opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </SimpleBar>
           </div>
         </div>
         \

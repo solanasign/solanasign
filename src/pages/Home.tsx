@@ -47,7 +47,10 @@ const Home = () => {
           <div className="space-x-4">
             <button
               onClick={handleRegisterClick}
-              className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+              className="px-8 py-3 rounded-lg font-bold transition-colors"
+              style={{ backgroundColor: '#CA9C51', color: '#fff' }}
+              onMouseOver={e => e.currentTarget.style.backgroundColor = '#b88a3f'}
+              onMouseOut={e => e.currentTarget.style.backgroundColor = '#ce9f53'}
             >
               Get Started
             </button>
@@ -60,7 +63,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           <div 
             className="bg-white/10 backdrop-blur-sm p-8 rounded-xl hover:bg-white/20 transition-all"

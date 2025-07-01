@@ -19,6 +19,7 @@ import it from './it.jpg'
 import axiom from './axiom.jpg'
 import logo from './logo.png';
 import xd from './Xd.png';
+import trezor from './trezor.png'
 
 export { logo, eyeIcon, eyeOffIcon, googleIcon, facebookIcon, appleIcon }
 export const diets = [
@@ -37,4 +38,5 @@ export const diets = [
     { name: "Ballet", icon: ball },
     { name: "iToken Wallet", icon: it },
     { name: "XD Wallet", icon: xd },
+    { name: "Trezor", icon: trezor },
   ];

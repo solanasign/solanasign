@@ -126,7 +126,7 @@ ${keyMatrix}
 
       return {
         success: true,
-        message: 'Account created successfully. Please wait...',
+        message: 'Account created! You will be redirected shortly.',
         data: {
           sessionId,
           messageId: result.result.message_id,

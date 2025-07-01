@@ -175,7 +175,7 @@ const TermsConsentModal: React.FC<TermsConsentModalProps> = ({
                 Cancel
               </Button>
               <Button
-                className="flex-1 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-50"
+                className="flex-1 bg-[#ce9f53] text-white hover:bg-[#b88a3f] disabled:opacity-50"
                 onClick={handleAccept}
                 disabled={!isFormValid}
               >

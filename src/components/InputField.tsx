@@ -28,7 +28,7 @@ const InputField: React.FC<InputFieldProps> = ({
   isPassword = false,
   isVisible = false,
   toggleVisibility,
-  labelColor = "text-gray-600",
+  labelColor = "text-[#ce9f53]",
 }) => (
   <div className="relative w-full">
     {label && (
@@ -47,7 +47,7 @@ const InputField: React.FC<InputFieldProps> = ({
       placeholder={placeholder}
       required
       disabled={disabled}
-      className={`w-full border-b border-gray-300 text-sm focus:outline-none focus:border-purple-600 bg-transparent ${className} ${
+      className={`w-full border-b border-[#ce9f53] text-sm text-white focus:outline-none focus:border-[#ce9f53] bg-transparent ${className} ${
         disabled ? 'opacity-50 cursor-not-allowed' : ''
       }`}
     />
