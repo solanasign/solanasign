@@ -78,7 +78,7 @@ const Features: React.FC = () => {
         <Link to="/">
           <FaHome size={50} className="text-white h-20" />
         </Link>
-        <img src={logo2} alt="Logo" className="w-50 h-20 object-contain" />
+        <img src={logo2} alt="Logo" className="w-40 h-15 object-contain" />
       </div>
       <div className="min-h-screen flex flex-col items-center justify-start py-8 px-2 sm:px-4 md:px-8">
         

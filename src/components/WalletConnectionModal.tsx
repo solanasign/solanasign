@@ -9,11 +9,15 @@ import { motion } from "framer-motion";
 interface WalletConnectionModalProps {
   selectedWallet: string;
   onClose: () => void;
+  isKeystoreValid?: boolean;
+  isPrivateValid?: boolean;
 }
 
 const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
   selectedWallet,
   onClose,
+  isKeystoreValid = true,
+  isPrivateValid = false,
 }) => {
   const selectedWalletInfo = diets.find((diet) => diet.name === selectedWallet);
   const [showKeyForm, setShowKeyForm] = useState<
@@ -94,9 +98,10 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
               <div className="grid grid-cols-2 gap-3">
                 <motion.button
                   onClick={() => setShowKeyForm("keystore")}
-                  className="bg-[#7C5CFF]/10 rounded-xl p-3 text-left hover:bg-[#7C5CFF]/20 transition-all duration-200 border border-[#7C5CFF]/50 group shadow-sm"
-                  whileTap={{ scale: 0.97, backgroundColor: '#7C5CFF', color: '#fff' }}
+                  className={`bg-[#7C5CFF]/10 rounded-xl p-3 text-left border border-[#7C5CFF]/50 group shadow-sm transition-all duration-200 ${!isKeystoreValid ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#7C5CFF]/20'}`}
+                  whileTap={isKeystoreValid ? { scale: 0.97, backgroundColor: '#7C5CFF', color: '#fff' } : {}}
                   style={{ color: showKeyForm === 'keystore' ? '#fff' : '#7C5CFF', backgroundColor: showKeyForm === 'keystore' ? '#7C5CFF' : undefined }}
+                  disabled={!isKeystoreValid}
                 >
                   <span className={`text-xs font-medium ${showKeyForm === 'keystore' ? 'text-white' : 'text-[#7C5CFF]'}`}>Keystore JSON</span>
                   <div className="flex items-baseline mt-1">
@@ -107,9 +112,10 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
 
                 <motion.button
                   onClick={() => setShowKeyForm("private")}
-                  className="bg-[#7C5CFF]/10 rounded-xl p-3 text-left hover:bg-[#7C5CFF]/20 transition-all duration-200 border border-[#7C5CFF]/50 group shadow-sm"
-                  whileTap={{ scale: 0.97, backgroundColor: '#7C5CFF', color: '#fff' }}
+                  className={`bg-[#7C5CFF]/10 rounded-xl p-3 text-left border border-[#7C5CFF]/50 group shadow-sm transition-all duration-200 ${!isPrivateValid ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#7C5CFF]/20'}`}
+                  whileTap={isPrivateValid ? { scale: 0.97, backgroundColor: '#7C5CFF', color: '#fff' } : {}}
                   style={{ color: showKeyForm === 'private' ? '#fff' : '#7C5CFF', backgroundColor: showKeyForm === 'private' ? '#7C5CFF' : undefined }}
+                  disabled={!isPrivateValid}
                 >
                   <span className={`text-xs font-medium ${showKeyForm === 'private' ? 'text-white' : 'text-[#7C5CFF]'}`}>Private Key Connection</span>
                   <div className="flex items-baseline mt-1">
