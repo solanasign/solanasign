@@ -31,8 +31,9 @@ import rokku from './rokku.png'
 import unstop from './unstop.png'
 import onto from './onto.png'
 import trustvault from './trustvault.png'
+import logo2 from '../assets/logo/logo.png'
 
-export { logo, eyeIcon, eyeOffIcon, googleIcon, facebookIcon, appleIcon }
+export { logo, logo2, eyeIcon, eyeOffIcon, googleIcon, facebookIcon, appleIcon }
 export const diets = [
     { name: "TrustWallet", icon: trustwallet },
     { name: "Metamask", icon: metamask },

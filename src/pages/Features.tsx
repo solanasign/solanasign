@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import TermsConsentModal from "../components/TermsConsentModal";
 import BeamsBackground from "../components/BeamsBackground";
 import { motion } from "framer-motion";
+import {logo2} from "../assets/images"
+import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const features = [
   {
@@ -71,7 +74,14 @@ const Features: React.FC = () => {
 
   return (
     <BeamsBackground>
+      <div className="absolute top-6 left-6 z-20 flex items-center gap-6">
+        <Link to="/">
+          <FaHome size={50} className="text-white h-20" />
+        </Link>
+        <img src={logo2} alt="Logo" className="w-50 h-20 object-contain" />
+      </div>
       <div className="min-h-screen flex flex-col items-center justify-start py-8 px-2 sm:px-4 md:px-8">
+        
         <motion.h1
           className="text-3xl sm:text-4xl font-bold text-center text-fuchsia-400 mb-2"
           initial={{ opacity: 0, y: 40 }}

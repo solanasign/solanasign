@@ -51,10 +51,10 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
           <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-2xl shadow-xs border border-zinc-200/50 dark:border-zinc-800/50 overflow-hidden">
             <div className="p-5 border-b border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xs">
               <div className="flex items-start justify-between mb-4">
-                <h2 className="text-lg font-semibold text-[#7C5CFF]">
+                <h2 className="text-lg font-semibold text-white">
                   Connect your Wallet
                 </h2>
-                <div className="px-2.5 py-0.5 rounded-full text-xs font-medium border bg-[#7C5CFF]/10 text-[#7C5CFF] border-[#7C5CFF]/30">
+                <div className="px-2.5 py-0.5 rounded-full text-xs font-medium border bg-[#7C5CFF]/10 text-white border-[#7C5CFF]/30">
                   WAITING
                 </div>
               </div>

