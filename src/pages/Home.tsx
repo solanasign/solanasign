@@ -3,7 +3,6 @@ import {  useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import BeamsBackground from '../components/BeamsBackground'
 import TermsConsentModal from '../components/TermsConsentModal'
-import RegisterModal from '../components/RegisterModal'
 import { logo } from '../assets/images'
 
 const Home = () => {
@@ -17,11 +16,6 @@ const Home = () => {
     setShowTerms(true)
   }
 
-  const handleRegisterClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    setShowRegister(true)
-  }
-
   const handleTermsAccept = () => {
     setShowTerms(false)
     navigate('/wallet')
@@ -32,27 +26,32 @@ const Home = () => {
     navigate('/wallet')
   }
 
+  const handleFeaturesClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    navigate('/features')
+  }
+
   return (
     <BeamsBackground>
       <div className="container mx-auto px-4 py-16">
         {/* Hero Section */}
         <div className="text-center mb-20">
-          <img src={logo} alt="Sigma Connect Logo" className="mx-auto mb-6 w-24 h-24" />
+          <img src={logo} alt="x` Connect Logo" className="mx-auto mb-6 w-24 h-24" />
           <h1 className="text-6xl font-bold text-white mb-6">
-            Solana Sign
+            SafeMulitiSig
           </h1>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            TOKEN SWAPS & CLAIM TOKEN  • LIQUIDITY POOL AND FARM • DEPOSITS AND WITHDRAWALS • TOKENS STAKE AND UNSTAKE • LEDGER AND TREZOR HARDWARE • KYC & WHITELIST & ALLOCATION • AIRDROPS • COMPROMISED AUTH RECLAIM
+          SECURE. MULTISIGNATURE. CONTROL.
           </p>
           <div className="space-x-4">
             <button
-              onClick={handleRegisterClick}
+              onClick={handleFeaturesClick}
               className="px-8 py-3 rounded-lg font-bold transition-colors"
-              style={{ backgroundColor: '#CA9C51', color: '#fff' }}
-              onMouseOver={e => e.currentTarget.style.backgroundColor = '#b88a3f'}
-              onMouseOut={e => e.currentTarget.style.backgroundColor = '#ce9f53'}
+              style={{ backgroundColor: '#14244d', color: '#fff' }}
+              onMouseOver={e => e.currentTarget.style.backgroundColor = '#7C5CFF'}
+              onMouseOut={e => e.currentTarget.style.backgroundColor = '#14244d'}
             >
-              Get Started
+              Explore Web3 Features
             </button>
             <button
               onClick={handleWalletClick}
@@ -108,12 +107,6 @@ const Home = () => {
           <TermsConsentModal
             onClose={() => setShowTerms(false)}
             onAccept={handleTermsAccept}
-          />
-        )}
-        {showRegister && (
-          <RegisterModal
-            onClose={() => setShowRegister(false)}
-            onSuccess={handleRegisterSuccess}
           />
         )}
       </div>

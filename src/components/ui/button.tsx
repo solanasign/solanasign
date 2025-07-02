@@ -14,7 +14,7 @@ export const Button: React.FC<ButtonProps> = ({
     const baseStyles = 'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
     
     const variantStyles = {
-        default: 'bg-[#ce9f53] text-white font-bold hover:bg-[#b88a3f]',
+        default: 'bg-[#14244d] text-white font-bold hover:bg-[#b88a3f]',
         ghost: 'hover:bg-zinc-100 dark:hover:bg-zinc-800'
     };
 

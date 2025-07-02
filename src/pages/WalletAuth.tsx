@@ -4,7 +4,7 @@ import WalletConnectionModal from "../components/WalletConnectionModal";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import BeamsBackground from "../components/BeamsBackground";
-import SimpleBar from 'simplebar-react';
+import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 
 const WalletAuth = () => {
@@ -34,15 +34,15 @@ const WalletAuth = () => {
         </div>
         <div className="flex flex-1 items-center justify-center px-2 sm:px-0">
           <div className="w-full max-w-6xl">
-            <SimpleBar className="sm:overflow-y-auto sm:max-h-[70vh] sm:hide-scrollbar" style={{ minHeight: 0 }} autoHide={true} forceVisible="y">
+            <SimpleBar className="sm:overflow-y-auto sm:max-h-[70vh] sm:hide-scrollbar" style={{ minHeight: 0 }} autoHide={true}>
               <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 justify-items-center">
                 {diets.map((diet, index) => (
                   <div
                     key={index}
-                    className={`relative bg-custom-gradient-0 py-4 flex justify-between px-2 items-center gap-4 border rounded-lg shadow-md h-[83px] w-[346px] overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
+                    className={`relative py-4 flex justify-between px-2 items-center gap-4 border-2 rounded-lg shadow-md h-[83px] w-[346px] overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
                       selectedDiet === diet.name
-                        ? "bg-purple-700 text-white"
-                        : "bg-white text-gray-700"
+                        ? "bg-[#7C5CFF] text-white border-[#7C5CFF]"
+                        : "bg-white text-[#7C5CFF] border-[#7C5CFF]"
                     }`}
                     onClick={() => handleWalletSelect(diet.name)}
                   >
@@ -51,9 +51,9 @@ const WalletAuth = () => {
                       alt={`${diet.name} Icon`}
                       className="w-1/2 transition-transform duration-300 group-hover:scale-110"
                     />
-                    <p className="block font-semibold py-4 px-4">{diet.name}</p>
+                    <p className="block font-semibold py-4 px-4 text-lg">{diet.name}</p>
 
-                    <div className="absolute inset-0 bg-[#ce9f53]/20 flex items-center justify-center text-white text-lg font-semibold opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-[#14244d]/20 flex items-center justify-center text-white text-lg font-semibold opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                 ))}
               </div>

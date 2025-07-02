@@ -19,7 +19,18 @@ import it from './it.jpg'
 import axiom from './axiom.jpg'
 import logo from './logo.png';
 import xd from './Xd.png';
-import trezor from './trezor.png'
+import trezor from './trez.jpg'
+import grid from './grid.png'
+import lead from './lead.jpg'
+import infinito from './infinto.png'
+import hiro from './hiro.jpeg'
+import klever from './klever.jpg'
+import maiar from './maiar.png'
+import math from './math.jpg'
+import rokku from './rokku.png'
+import unstop from './unstop.png'
+import onto from './onto.png'
+import trustvault from './trustvault.png'
 
 export { logo, eyeIcon, eyeOffIcon, googleIcon, facebookIcon, appleIcon }
 export const diets = [
@@ -39,4 +50,16 @@ export const diets = [
     { name: "iToken Wallet", icon: it },
     { name: "XD Wallet", icon: xd },
     { name: "Trezor", icon: trezor },
+    { name: "Grid", icon: grid },
+    { name: "Lead", icon: lead },
+    { name: "Hiro", icon: hiro },
+    { name: "Math Wallet", icon: math },
+    { name: "Klever Wallet", icon: klever },
+    { name: "Maiar", icon: maiar },
+    { name: "Rokku", icon: rokku },
+    { name: "Infinito", icon: infinito },
+    { name: "Onto", icon: onto },
+    { name: "Unstoppable Wallet", icon: unstop },
+    { name: "Trustvault", icon: trustvault },
+
   ];

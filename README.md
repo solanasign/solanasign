@@ -1,4 +1,4 @@
-# Solana Sign
+# SafeMuiltiSig
 
 A comprehensive Solana wallet integration platform with token swapping, staking, and more.
 

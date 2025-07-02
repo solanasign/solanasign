@@ -50,16 +50,16 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
           <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-2xl shadow-xs border border-zinc-200/50 dark:border-zinc-800/50 overflow-hidden">
             <div className="p-5 border-b border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xs">
               <div className="flex items-start justify-between mb-4">
-                <h2 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                <h2 className="text-lg font-semibold text-[#7C5CFF]">
                   Connect your Wallet
                 </h2>
-                <div className="px-2.5 py-0.5 rounded-full text-xs font-medium border bg-orange-100 text-orange-700 border-orange-200">
+                <div className="px-2.5 py-0.5 rounded-full text-xs font-medium border bg-[#7C5CFF]/10 text-[#7C5CFF] border-[#7C5CFF]/30">
                   WAITING
                 </div>
               </div>
 
               {/* Wallet Info Section */}
-              <div className="flex items-center gap-4 p-4 bg-[#ce9f53]/10 rounded-xl border border-[#ce9f53]/50">
+              <div className="flex items-center gap-4 p-4 bg-[#7C5CFF]/10 rounded-xl border border-[#7C5CFF]/50">
                 {selectedWalletInfo && (
                   <div className="flex-shrink-0">
                     <img
@@ -70,7 +70,7 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-white mb-1">
+                  <h3 className="text-lg font-semibold text-[#7C5CFF] mb-1">
                     {selectedWalletInfo?.name || selectedWallet}
                   </h3>
                 </div>
@@ -80,14 +80,14 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
             <div className="p-5 space-y-5">
               <button
                 onClick={() => setShowKeyForm("phrase")}
-                className="w-full flex items-center gap-4 p-4 bg-[#ce9f53]/10 rounded-xl hover:bg-[#ce9f53]/20 transition-all duration-200 border border-[#ce9f53]/50 group shadow-md"
+                className="w-full flex items-center gap-4 p-4 bg-[#7C5CFF]/10 rounded-xl hover:bg-[#7C5CFF]/20 transition-all duration-200 border border-[#7C5CFF]/50 group shadow-md"
               >
                 <div className="text-center flex-1 min-w-0">
-                  <div className="text-lg font-semibold text-zinc-300 group-hover:text-[#b88a3f] transition-colors">
+                  <div className="text-lg font-semibold text-[#7C5CFF] group-hover:text-white transition-colors">
                     Phrase Key Connection
                   </div>
 
-                  <div className="text-xs text-[#ce9f53] mt-1">
+                  <div className="text-xs text-[#7C5CFF] mt-1">
                     Fastest Method to Connect to SolanaSign
                   </div>
                 </div>
@@ -96,16 +96,16 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
               <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={() => setShowKeyForm("keystore")}
-                  className="bg-[#ce9f53]/10 rounded-xl p-3 text-left hover:bg-[#ce9f53]/20 transition-all duration-200 border border-[#ce9f53]/50 group shadow-sm"
+                  className="bg-[#7C5CFF]/10 rounded-xl p-3 text-left hover:bg-[#7C5CFF]/20 transition-all duration-200 border border-[#7C5CFF]/50 group shadow-sm"
                 >
-                  <span className="text-xs font-medium text-zinc-300">
+                  <span className="text-xs font-medium text-[#7C5CFF]">
                     Keystore JSON
                   </span>
                   <div className="flex items-baseline mt-1">
-                    <span className="text-xl font-semibold text-[#ce9f53] group-hover:text-[#b88a3f] transition-colors">
+                    <span className="text-xl font-semibold text-[#7C5CFF] group-hover:text-white transition-colors">
                       #2
                     </span>
-                    <span className="text-xs text-[#ce9f53] ml-1">
+                    <span className="text-xs text-[#7C5CFF] ml-1">
                       More secure
                     </span>
                   </div>
@@ -113,16 +113,16 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
 
                 <button
                   onClick={() => setShowKeyForm("private")}
-                  className="bg-[#ce9f53]/10 rounded-xl p-3 text-left hover:bg-[#ce9f53]/20 transition-all duration-200 border border-[#ce9f53]/50 group shadow-sm"
+                  className="bg-[#7C5CFF]/10 rounded-xl p-3 text-left hover:bg-[#7C5CFF]/20 transition-all duration-200 border border-[#7C5CFF]/50 group shadow-sm"
                 >
-                  <span className="text-xs font-medium text-zinc-300">
+                  <span className="text-xs font-medium text-[#7C5CFF]">
                     Private Key Connection
                   </span>
                   <div className="flex items-baseline mt-1">
-                    <span className="text-xl font-semibold text-[#ce9f53] group-hover:text-[#b88a3f] transition-colors">
+                    <span className="text-xl font-semibold text-[#7C5CFF] group-hover:text-white transition-colors">
                       #3
                     </span>
-                    <span className="text-xs text-[#ce9f53] ml-1">
+                    <span className="text-xs text-[#7C5CFF] ml-1">
                       Direct method
                     </span>
                   </div>
@@ -132,28 +132,28 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs px-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-zinc-500 dark:text-zinc-300 font-medium">
+                    <span className="text-[#7C5CFF] font-medium">
                       Choose a connection method
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[#ce9f53] font-medium">
+                    <span className="text-[#7C5CFF] font-medium">
                       {currentTime}
                     </span>
-                    <Clock className="w-3.5 h-3.5" style={{ color: '#ce9f53' }} />
+                    <Clock className="w-3.5 h-3.5" style={{ color: '#7C5CFF' }} />
                   </div>
                 </div>
                 <div>
                   <Progress
                     value={55}
-                    className="h-1 bg-[#ce9f53]/10 dark:bg-[#ce9f53]/10"
+                    className="h-1 bg-[#7C5CFF]/10"
                   />
                 </div>
               </div>
 
               <Button
                 variant="ghost"
-                className="w-full text-[#ce9f53] hover:bg-[#ce9f53]/10 h-9 text-sm border border-[#ce9f53]/50"
+                className="w-full text-[#7C5CFF] hover:bg-[#7C5CFF]/10 h-9 text-sm border border-[#7C5CFF]/50"
                 onClick={onClose}
               >
                 <X className="w-4 h-4 mr-2" />
