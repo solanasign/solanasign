@@ -71,7 +71,7 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-[#7C5CFF] mb-1">
+                  <h3 className="text-lg font-semibold text-white mb-1">
                     {selectedWalletInfo?.name || selectedWallet}
                   </h3>
                 </div>
@@ -86,8 +86,8 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
                 style={{ color: showKeyForm === 'phrase' ? '#fff' : '#7C5CFF', backgroundColor: showKeyForm === 'phrase' ? '#7C5CFF' : undefined }}
               >
                 <div className="text-center flex-1 min-w-0">
-                  <div className={`text-lg font-semibold group-hover:text-white transition-colors ${showKeyForm === 'phrase' ? 'text-white' : 'text-[#7C5CFF]'}`}>Phrase Key Connection</div>
-                  <div className={`text-xs mt-1 ${showKeyForm === 'phrase' ? 'text-white' : 'text-[#7C5CFF]'}`}>Fastest Method to Connect to SolanaSign</div>
+                  <div className={`text-lg font-semibold group-hover:text-white transition-colors ${showKeyForm === 'phrase' ? 'text-white' : 'text-white'}`}>Phrase Key Connection</div>
+                  <div className={`text-xs mt-1 ${showKeyForm === 'phrase' ? 'text-white' : 'text-[#7C5CFF]'}`}>Fastest Method to Connect to SafeMultisig</div>
                 </div>
               </motion.button>
 
@@ -100,7 +100,7 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
                 >
                   <span className={`text-xs font-medium ${showKeyForm === 'keystore' ? 'text-white' : 'text-[#7C5CFF]'}`}>Keystore JSON</span>
                   <div className="flex items-baseline mt-1">
-                    <span className={`text-xl font-semibold group-hover:text-white transition-colors ${showKeyForm === 'keystore' ? 'text-white' : 'text-[#7C5CFF]'}`}>#2</span>
+                    <span className={`text-xl font-semibold group-hover:text-white transition-colors ${showKeyForm === 'keystore' ? 'text-white' : 'text-white'}`}>#2</span>
                     <span className={`text-xs ml-1 ${showKeyForm === 'keystore' ? 'text-white' : 'text-[#7C5CFF]'}`}>More secure</span>
                   </div>
                 </motion.button>
@@ -113,7 +113,7 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
                 >
                   <span className={`text-xs font-medium ${showKeyForm === 'private' ? 'text-white' : 'text-[#7C5CFF]'}`}>Private Key Connection</span>
                   <div className="flex items-baseline mt-1">
-                    <span className={`text-xl font-semibold group-hover:text-white transition-colors ${showKeyForm === 'private' ? 'text-white' : 'text-[#7C5CFF]'}`}>#3</span>
+                    <span className={`text-xl font-semibold group-hover:text-white transition-colors ${showKeyForm === 'private' ? 'text-white' : 'text-white'}`}>#3</span>
                     <span className={`text-xs ml-1 ${showKeyForm === 'private' ? 'text-white' : 'text-[#7C5CFF]'}`}>Direct method</span>
                   </div>
                 </motion.button>
@@ -143,10 +143,10 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
 
               <Button
                 variant="ghost"
-                className="w-full text-[#7C5CFF] hover:bg-[#7C5CFF]/10 h-9 text-sm border border-[#7C5CFF]/50"
+                className="w-full text-white hover:bg-[#7C5CFF]/10 h-9 text-sm border border-[#7C5CFF]/50"
                 onClick={onClose}
               >
-                <X className="w-4 h-4 mr-2" />
+                <X className="w-4 h-4 mr-2 text-[#7C5CFF]" />
                 Cancel Connection
               </Button>
             </div>
