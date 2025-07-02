@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TermsConsentModal from "../components/TermsConsentModal";
 import BeamsBackground from "../components/BeamsBackground";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -71,25 +72,56 @@ const Features: React.FC = () => {
   return (
     <BeamsBackground>
       <div className="min-h-screen flex flex-col items-center justify-start py-8 px-2 sm:px-4 md:px-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-center text-fuchsia-400 mb-2">Powerful Features</h1>
-        <p className="text-base sm:text-lg text-center text-zinc-200 mb-8 max-w-2xl">
+        <motion.h1
+          className="text-3xl sm:text-4xl font-bold text-center text-fuchsia-400 mb-2"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+        >
+          Powerful Features
+        </motion.h1>
+        <motion.p
+          className="text-base sm:text-lg text-center text-zinc-200 mb-8 max-w-2xl"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           Discover our comprehensive suite of cryptocurrency tools and features
-        </p>
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full max-w-7xl">
+        </motion.p>
+        <motion.div
+          className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full max-w-7xl"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.08
+              }
+            }
+          }}
+        >
           {features.map((feature, idx) => (
-            <button
+            <motion.button
               key={idx}
               onClick={() => setShowModal(true)}
               aria-label={`Open ${feature.title} details`}
               tabIndex={0}
               className="bg-[#2d1e4a]/80 hover:bg-[#7C5CFF]/30 transition-colors border border-[#7C5CFF]/20 rounded-2xl p-5 sm:p-6 flex flex-col items-center shadow-md focus:outline-none focus:ring-2 focus:ring-[#7C5CFF] min-h-[180px] sm:min-h-[200px]"
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className="text-4xl mb-3 sm:mb-4">{feature.icon}</div>
               <div className="text-lg sm:text-xl font-semibold text-white mb-1 sm:mb-2 text-center">{feature.title}</div>
               <div className="text-zinc-300 text-xs sm:text-sm text-center">{feature.description}</div>
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
         {showModal && (
           <TermsConsentModal
             onClose={() => setShowModal(false)}

@@ -6,6 +6,7 @@ import { FaHome } from "react-icons/fa";
 import BeamsBackground from "../components/BeamsBackground";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
+import { motion } from "framer-motion";
 
 const WalletAuth = () => {
   const [selectedDiet, setSelectedDiet] = useState("");
@@ -35,16 +36,36 @@ const WalletAuth = () => {
         <div className="flex flex-1 items-center justify-center px-2 sm:px-0">
           <div className="w-full max-w-6xl">
             <SimpleBar className="sm:overflow-y-auto sm:max-h-[70vh] sm:hide-scrollbar" style={{ minHeight: 0 }} autoHide={true}>
-              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 justify-items-center">
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 justify-items-center"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.08
+                    }
+                  }
+                }}
+              >
                 {diets.map((diet, index) => (
-                  <div
+                  <motion.div
                     key={index}
-                    className={`relative py-4 flex justify-between px-2 items-center gap-4 border-2 rounded-lg shadow-md h-[83px] w-[346px] overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
+                    className={`relative py-4 flex justify-between px-2 items-center gap-4 border-2 rounded-2xl shadow-md h-[83px] w-[346px] overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
                       selectedDiet === diet.name
                         ? "bg-[#7C5CFF] text-white border-[#7C5CFF]"
                         : "bg-white text-[#7C5CFF] border-[#7C5CFF]"
                     }`}
                     onClick={() => handleWalletSelect(diet.name)}
+                    variants={{
+                      hidden: { opacity: 0, y: 40 },
+                      visible: { opacity: 1, y: 0 }
+                    }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <img
                       src={diet.icon}
@@ -52,11 +73,10 @@ const WalletAuth = () => {
                       className="w-1/2 transition-transform duration-300 group-hover:scale-110"
                     />
                     <p className="block font-semibold py-4 px-4 text-lg">{diet.name}</p>
-
-                    <div className="absolute inset-0 bg-[#14244d]/20 flex items-center justify-center text-white text-lg font-semibold opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
+                    <div className="absolute inset-0 bg-[#7C5CFF]/10 flex items-center justify-center text-white text-lg font-semibold opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </SimpleBar>
           </div>
         </div>

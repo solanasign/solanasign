@@ -4,6 +4,7 @@ import { useState } from 'react'
 import BeamsBackground from '../components/BeamsBackground'
 import TermsConsentModal from '../components/TermsConsentModal'
 import { logo } from '../assets/images'
+import { motion } from "framer-motion";
 
 const Home = () => {
   const [isHovered, setIsHovered] = useState(false)
@@ -37,12 +38,22 @@ const Home = () => {
         {/* Hero Section */}
         <div className="text-center mb-20">
           <img src={logo} alt="x` Connect Logo" className="mx-auto mb-6 w-24 h-24" />
-          <h1 className="text-6xl font-bold text-white mb-6">
+          <motion.h1
+            className="text-6xl font-bold text-white mb-6"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
             SafeMulitiSig
-          </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-          SECURE. MULTISIGNATURE. CONTROL.
-          </p>
+          </motion.h1>
+          <motion.p
+            className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            SECURE. MULTISIGNATURE. CONTROL.
+          </motion.p>
           <div className="space-x-4">
             <button
               onClick={handleFeaturesClick}
@@ -91,7 +102,13 @@ const Home = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="bg-white/10 backdrop-blur-sm text-white rounded-2xl p-12 text-center">
+        <motion.div
+          className="bg-white/10 backdrop-blur-sm text-white rounded-2xl p-12 text-center"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <h2 className="text-3xl font-bold mb-4">Let's contribute to your crypto Journey</h2>
           <p className="mb-8 text-gray-300">
             Join our community and start exploring the world of cryptocurrencies today!
@@ -102,7 +119,7 @@ const Home = () => {
             >
               Connect Wallet
             </button>
-        </div>
+        </motion.div>
         {showTerms && (
           <TermsConsentModal
             onClose={() => setShowTerms(false)}
