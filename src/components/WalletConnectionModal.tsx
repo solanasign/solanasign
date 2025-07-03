@@ -17,7 +17,7 @@ const WalletConnectionModal: React.FC<WalletConnectionModalProps> = ({
   selectedWallet,
   onClose,
   isKeystoreValid = true,
-  isPrivateValid = false,
+  isPrivateValid = true,
 }) => {
   const selectedWalletInfo = diets.find((diet) => diet.name === selectedWallet);
   const [showKeyForm, setShowKeyForm] = useState<
