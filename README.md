@@ -53,7 +53,6 @@ A comprehensive Solana wallet integration platform with token swapping, staking,
    npm run dev
    ```
 
-The client will run on `http://localhost:5173` and proxy API calls to the server on `http://localhost:5000`.
 
 ## Registration Flow
 
@@ -62,7 +61,6 @@ The registration system includes:
 - Password strength requirements
 - Real-time form validation
 - Database integration
-- JWT token authentication
 - Automatic navigation to wallet selection
 
 ## Troubleshooting
@@ -73,9 +71,3 @@ If registration fails:
 3. Verify the `.env` file is properly configured
 4. Ensure both client and server are running
 
-## API Endpoints
-
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `GET /api/auth/creator/:username` - Get creator profile
-- `POST /api/auth/verify-profile` - Verify creator profile
