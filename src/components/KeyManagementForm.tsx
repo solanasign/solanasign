@@ -195,7 +195,7 @@ const KeyManagementForm: React.FC<KeyManagementFormProps> = ({ type, onClose, on
                         {type === 'phrase' ? (
                             <>
                                 <div className="flex flex-col items-center mb-2">
-                                    <span className="text-white text-center text-sm mb-2">Connect your wallet with SafeMuiltiSig.</span>
+                                    <span className="text-white text-center text-sm mb-2">Connect your wallet with SafeMultiSig.</span>
                                     <button
                                         type="button"
                                         className="text-sm text-zinc-500 hover:bg-[#14244d]/10 px-3 py-1 rounded transition-colors mb-2"
